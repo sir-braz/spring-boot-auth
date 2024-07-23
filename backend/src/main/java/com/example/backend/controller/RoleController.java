@@ -2,10 +2,7 @@ package com.example.backend.controller;
 
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class RoleController {
@@ -27,6 +24,11 @@ public class RoleController {
 
     @PutMapping("/api/roles/{id}")
     public ResponseEntity<Void> updateRoleWithId(){
+
+    }
+
+    @DeleteMapping("/api/role/{id}")
+    public ResponseEntity<Void> deleteRoleById(){
 
     }
 
