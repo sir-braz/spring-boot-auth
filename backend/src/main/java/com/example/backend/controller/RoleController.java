@@ -19,5 +19,10 @@ public class RoleController {
 
     }
 
+    @GetMapping("/api/roles/{id}")
+    public ResponseEntity<Void> listRoleById(){
+
+    }
+
 
 }
