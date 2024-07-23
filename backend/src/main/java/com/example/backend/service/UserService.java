@@ -9,4 +9,6 @@ public interface UserService {
     ResponseEntity<List<User>> getAllUsers();
 
     ResponseEntity<User> getUserById(Long id);
+
+    ResponseEntity<User> updateUserId(Long id, User user);
 }

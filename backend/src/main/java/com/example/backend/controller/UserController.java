@@ -31,7 +31,7 @@ public class UserController {
 
     @PutMapping("/api/users/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
-        return null;
+        return userService.updateUserId(id, user);
     }
 
 }
