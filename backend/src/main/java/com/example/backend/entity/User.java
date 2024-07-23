@@ -1,9 +1,12 @@
 package com.example.backend.entity;
 
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Entity
 public class User {
@@ -11,27 +14,37 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String username;
     private String password;
     private String email;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Collection<Role> roles = new HashSet<>();
+
+    @CreationTimestamp
     private LocalDateTime createdAt;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+
+    @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    public User(){
-
+    // Default constructor
+    public User() {
     }
 
-    public User(Long id, String username, String password, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        this.id = id;
+    // Parameterized constructor
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -62,6 +75,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     public LocalDateTime getCreatedAt() {
