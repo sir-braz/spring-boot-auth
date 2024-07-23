@@ -18,4 +18,9 @@ public class AuthController {
     public ResponseEntity<Void> loginUser(){
 
     }
+
+    @PostMapping("/api/auth/refresh-token")
+    public ResponseEntity<Void> refreshToken(){
+
+    }
 }
