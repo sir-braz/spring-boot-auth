@@ -21,11 +21,11 @@ public class UserController {
 
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> listAllUsers(){
+        return userService.getAllUsers();
     }
 
     @GetMapping("/api/users/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
-
     }
 
     @PutMapping("/api/users/{id}")
