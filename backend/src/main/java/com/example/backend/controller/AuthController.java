@@ -13,4 +13,9 @@ public class AuthController {
     public ResponseEntity<Void> registerUser(@RequestBody User user){
 
     }
+
+    @PostMapping("/api/auth/login")
+    public ResponseEntity<Void> loginUser(){
+
+    }
 }
