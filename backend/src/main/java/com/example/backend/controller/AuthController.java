@@ -25,6 +25,7 @@ public class AuthController {
 
     @PostMapping("/api/auth/login")
     public ResponseEntity<Void> loginUser(){
+        return authService.siginUser();
     }
 
     @PostMapping("/api/auth/refresh-token")
