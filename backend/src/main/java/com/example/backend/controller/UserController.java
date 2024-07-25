@@ -24,17 +24,17 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/api/user/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
         return userService.getUserById(id);
     }
 
-    @PutMapping("/api/users/{id}")
+    @PutMapping("/api/user/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
         return userService.updateUserId(id, user);
     }
 
-    @DeleteMapping("/api/users/{id}")
+    @DeleteMapping("/api/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
     }
