@@ -29,7 +29,7 @@ public class RoleController {
 
     @GetMapping("/api/roles/{id}")
     public ResponseEntity<Void> listRoleById(){
-
+        return roleService.listRoleById();
     }
 
     @PutMapping("/api/roles/{id}")
