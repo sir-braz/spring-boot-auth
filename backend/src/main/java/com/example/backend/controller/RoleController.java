@@ -19,12 +19,11 @@ public class RoleController {
 
     @PostMapping("/api/roles")
     public ResponseEntity<Void> createRole(){
-
+        return roleService.createNewRole();
     }
 
     @GetMapping("/api/roles")
     public ResponseEntity<Void> listAllRoles(){
-
     }
 
     @GetMapping("/api/roles/{id}")
