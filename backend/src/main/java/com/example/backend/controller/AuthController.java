@@ -30,6 +30,6 @@ public class AuthController {
 
     @PostMapping("/api/auth/refresh-token")
     public ResponseEntity<Void> refreshToken(){
-
+        return authService.updateToken();
     }
 }
