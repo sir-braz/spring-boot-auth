@@ -1,6 +1,8 @@
 package com.example.backend.controller;
 
 import com.example.backend.entity.User;
+import com.example.backend.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,18 +12,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
+    private final AuthService authService;
+
+    @Autowired
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
     @PostMapping("/api/auth/register")
     public ResponseEntity<Void> registerUser(@RequestBody User user){
-        return null;
+        return authService.createNewUser(user);
     }
 
     @PostMapping("/api/auth/login")
     public ResponseEntity<Void> loginUser(){
-        return null;
+        return authService.siginUser();
     }
 
     @PostMapping("/api/auth/refresh-token")
     public ResponseEntity<Void> refreshToken(){
-        return null;
+        return authService.updateToken();
     }
 }

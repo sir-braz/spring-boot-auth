@@ -27,17 +27,22 @@ public class UserController {
 
     @GetMapping("/api/users")
     public ResponseEntity<List<User>> listAllUsers(){
-        return null;
+        return userService.getAllUsers();
     }
 
     @GetMapping("/api/users/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
-        return null;
+        return userService.getUserById(id);
     }
 
     @PutMapping("/api/users/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
-        return null;
+        return userService.updateUserId(id, user);
+    }
+
+    @DeleteMapping("/api/users/{id}")
+    public ResponseEntity<User> deleteUser(@PathVariable Long id){
+        return userService.deleteUser(id);
     }
 
     @DeleteMapping("/api/users/{id}")
