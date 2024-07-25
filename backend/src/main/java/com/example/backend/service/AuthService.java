@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 public interface AuthService {
     ResponseEntity<Void> createNewUser(User user);
 
-    ResponseEntity<Void> siginUser();
+    ResponseEntity<Void> signinUser();
 
     ResponseEntity<Void> updateToken();
 }
