@@ -1,6 +1,7 @@
 package com.example.backend.controller;
 
 
+import com.example.backend.entity.Role;
 import com.example.backend.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class RoleController {
     }
 
     @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Void> updateRoleWithId(){
-
+    public ResponseEntity<Void> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
+        return roleService.updateRoleById(role, id);
     }
 
     @DeleteMapping("/api/role/{id}")
