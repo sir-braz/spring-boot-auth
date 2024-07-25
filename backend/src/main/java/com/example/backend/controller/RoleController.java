@@ -24,6 +24,7 @@ public class RoleController {
 
     @GetMapping("/api/roles")
     public ResponseEntity<Void> listAllRoles(){
+        return roleService.listAllRoles();
     }
 
     @GetMapping("/api/roles/{id}")
