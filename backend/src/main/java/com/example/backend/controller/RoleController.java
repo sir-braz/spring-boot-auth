@@ -43,5 +43,15 @@ public class RoleController {
         return roleService.deleteRoleById(id);
     }
 
+    @PutMapping("/api/roles/{id}")
+    public ResponseEntity<Void> updateRoleWithId(){
+        return null;
+    }
+
+    @DeleteMapping("/api/role/{id}")
+    public ResponseEntity<Void> deleteRoleById(){
+        return null;
+    }
+
 
 }
