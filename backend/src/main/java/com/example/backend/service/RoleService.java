@@ -4,7 +4,7 @@ import com.example.backend.entity.Role;
 import org.springframework.http.ResponseEntity;
 
 public interface RoleService {
-    ResponseEntity<Void> createNewRole();
+    Role createNewRole(Role role);
 
     ResponseEntity<Void> listAllRoles();
 
