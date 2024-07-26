@@ -3,6 +3,7 @@ package com.example.backend.controller;
 import com.example.backend.entity.User;
 import com.example.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,21 +27,40 @@ public class UserController {
 
 
     @GetMapping("/api/users")
-    public ResponseEntity<List<User>> listAllUsers(){
-        return userService.getAllUsers();
+    public ResponseEntity<List<User>> listAllUsers() {
+        try {
+            List<User> users = (List<User>) userService.getAllUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/api/user/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
-        return userService.getUserById(id);
+       ResponseEntity<User> responseEntity = userService.getUserById(id);
+       try{
+           if(responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null){
+               return new ResponseEntity<>(responseEntity.getBody(), HttpStatus.OK);
+           }else{
+               return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+           }
+       }catch (Exception e){
+           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+       }
     }
 
-    @PutMapping("/api/users/{id}")
+    @PutMapping("/api/user/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
-        return userService.updateUserId(id, user);
+        User updateUser = userService.updateUserId(id, user).getBody();
+        if(updateUser != null){
+            return new ResponseEntity<>(updateUser, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @DeleteMapping("/api/users/{id}")
+    @DeleteMapping("/api/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
     }
