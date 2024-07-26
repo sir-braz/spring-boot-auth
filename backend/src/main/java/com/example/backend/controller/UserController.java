@@ -32,7 +32,12 @@ public class UserController {
 
     @GetMapping("/api/user/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
-        return userService.getUserById(id);
+       ResponseEntity<User> responseEntity = userService.getUserById(id);
+       if(responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null){
+           return new ResponseEntity<>(responseEntity.getBody(), HttpStatus.OK);
+       }else{
+           return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+       }
     }
 
     @PutMapping("/api/user/{id}")
