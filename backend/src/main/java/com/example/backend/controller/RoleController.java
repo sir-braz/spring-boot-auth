@@ -4,6 +4,7 @@ package com.example.backend.controller;
 import com.example.backend.entity.Role;
 import com.example.backend.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,10 +20,14 @@ public class RoleController {
 
 
     @PostMapping("/api/roles")
-    public ResponseEntity<Void> createRole(){
-        return roleService.createNewRole();
+    public ResponseEntity<Role> createRole(@RequestBody Role role) {
+        Role createdRole = roleService.createNewRole(role);
+        if (createdRole != null) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
-
     @GetMapping("/api/roles")
     public ResponseEntity<Void> listAllRoles(){
         return roleService.listAllRoles();
