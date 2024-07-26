@@ -62,12 +62,12 @@ public class UserController {
 
     @DeleteMapping("/api/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){
-        return userService.deleteUser(id);
-    }
-
-    @DeleteMapping("/api/users/{id}")
-    public ResponseEntity<User> deleteUser(){
-        return null;
+        boolean isDeleted = userService.deleteUser(id).hasBody();
+        if(isDeleted){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
 }
