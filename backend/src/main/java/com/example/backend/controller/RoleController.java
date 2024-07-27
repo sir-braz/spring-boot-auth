@@ -39,9 +39,9 @@ public class RoleController {
     }
 
     @GetMapping("/api/roles/{id}")
-    public ResponseEntity<Void> listRoleById(@PathVariable Long id){
+    public ResponseEntity<Role> listRoleById(@PathVariable Long id){
         try{
-            ResponseEntity<Void> listRoleId = roleService.listRoleById(id);
+            ResponseEntity<Role> listRoleId = roleService.listRoleById(id);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
