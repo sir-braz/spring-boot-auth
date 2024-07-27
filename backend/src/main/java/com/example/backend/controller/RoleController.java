@@ -31,7 +31,7 @@ public class RoleController {
     @GetMapping("/api/roles")
     public ResponseEntity<Role> listAllRoles(){
         try{
-            ResponseEntity<Void> listRole = roleService.listAllRoles();
+            ResponseEntity<Role> listRole = roleService.listAllRoles();
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -67,16 +67,5 @@ public class RoleController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Void> updateRoleWithId(){
-        return null;
-    }
-
-    @DeleteMapping("/api/role/{id}")
-    public ResponseEntity<Void> deleteRoleById(){
-        return null;
-    }
-
 
 }
