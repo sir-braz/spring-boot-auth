@@ -21,7 +21,11 @@ public class AuthController {
 
     @PostMapping("/api/auth/register")
     public ResponseEntity<Void> registerUser(@RequestBody User user){
-        return authService.createNewUser(user);
+        try{
+
+        }catch (Exception e){
+
+        }
     }
 
     @PostMapping("/api/auth/login")
