@@ -49,13 +49,23 @@ public class RoleController {
     }
 
     @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Void> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
-        return roleService.updateRoleById(role, id);
+    public ResponseEntity<Role> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
+        try{
+            ResponseEntity<Role> updateRole = roleService.updateRoleById(role, id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/api/role/{id}")
-    public ResponseEntity<Void> deleteRoleById(@PathVariable Long id){
-        return roleService.deleteRoleById(id);
+    public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
+        try{
+            ResponseEntity<Role> deleteRole = roleService.deleteRoleById(id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/api/roles/{id}")
