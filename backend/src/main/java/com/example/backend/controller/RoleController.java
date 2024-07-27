@@ -21,11 +21,11 @@ public class RoleController {
 
     @PostMapping("/api/roles")
     public ResponseEntity<Role> createRole(@RequestBody Role role) {
-        Role createdRole = roleService.createNewRole(role);
-        if (createdRole != null) {
+        try{
+            Role createdRole = roleService.createNewRole(role);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/api/roles")
