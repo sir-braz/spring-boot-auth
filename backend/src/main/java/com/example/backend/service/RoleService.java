@@ -6,11 +6,11 @@ import org.springframework.http.ResponseEntity;
 public interface RoleService {
     Role createNewRole(Role role);
 
-    ResponseEntity<Void> listAllRoles();
+    ResponseEntity<Role> listAllRoles();
 
-    ResponseEntity<Void> listRoleById();
+    ResponseEntity<Role> listRoleById(Long id);
 
-    ResponseEntity<Void> updateRoleById(Role role, Long id);
+    ResponseEntity<Role> updateRoleById(Role role, Long id);
 
-    ResponseEntity<Void> deleteRoleById(Long id);
+    ResponseEntity<Role> deleteRoleById(Long id);
 }

@@ -29,34 +29,43 @@ public class RoleController {
         }
     }
     @GetMapping("/api/roles")
-    public ResponseEntity<Void> listAllRoles(){
-        return roleService.listAllRoles();
+    public ResponseEntity<Role> listAllRoles(){
+        try{
+            ResponseEntity<Role> listRole = roleService.listAllRoles();
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/api/roles/{id}")
-    public ResponseEntity<Void> listRoleById(){
-        return roleService.listRoleById();
+    public ResponseEntity<Role> listRoleById(@PathVariable Long id){
+        try{
+            ResponseEntity<Role> listRoleId = roleService.listRoleById(id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Void> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
-        return roleService.updateRoleById(role, id);
+    public ResponseEntity<Role> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
+        try{
+            ResponseEntity<Role> updateRole = roleService.updateRoleById(role, id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/api/role/{id}")
-    public ResponseEntity<Void> deleteRoleById(@PathVariable Long id){
-        return roleService.deleteRoleById(id);
+    public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
+        try{
+            ResponseEntity<Role> deleteRole = roleService.deleteRoleById(id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-
-    @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Void> updateRoleWithId(){
-        return null;
-    }
-
-    @DeleteMapping("/api/role/{id}")
-    public ResponseEntity<Void> deleteRoleById(){
-        return null;
-    }
-
 
 }

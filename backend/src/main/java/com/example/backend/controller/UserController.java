@@ -53,21 +53,28 @@ public class UserController {
     @PutMapping("/api/user/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
         User updateUser = userService.updateUserId(id, user).getBody();
-        if(updateUser != null){
-            return new ResponseEntity<>(updateUser, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try{
+            if(updateUser != null){
+                return new ResponseEntity<>(updateUser, HttpStatus.OK);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/api/user/{id}")
     public ResponseEntity<User> deleteUser(@PathVariable Long id){
         boolean isDeleted = userService.deleteUser(id).hasBody();
-        if(isDeleted){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try{
+            if(isDeleted){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }else{
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }
