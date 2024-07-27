@@ -29,13 +29,23 @@ public class RoleController {
         }
     }
     @GetMapping("/api/roles")
-    public ResponseEntity<Void> listAllRoles(){
-        return roleService.listAllRoles();
+    public ResponseEntity<Role> listAllRoles(){
+        try{
+            ResponseEntity<Void> listRole = roleService.listAllRoles();
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/api/roles/{id}")
-    public ResponseEntity<Void> listRoleById(){
-        return roleService.listRoleById();
+    public ResponseEntity<Void> listRoleById(@PathVariable Long id){
+        try{
+            ResponseEntity<Void> listRoleId = roleService.listRoleById(id);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/api/roles/{id}")

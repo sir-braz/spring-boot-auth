@@ -8,7 +8,7 @@ public interface RoleService {
 
     ResponseEntity<Void> listAllRoles();
 
-    ResponseEntity<Void> listRoleById();
+    ResponseEntity<Void> listRoleById(Long id);
 
     ResponseEntity<Void> updateRoleById(Role role, Long id);
 
