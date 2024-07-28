@@ -1,36 +1,30 @@
 package com.example.backend.controller;
 
-import com.example.backend.entity.User;
+import com.example.backend.dto.AuthRequest;
+import com.example.backend.dto.AuthResponse;
 import com.example.backend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
+@RequestMapping("/api/auth")
 public class AuthController {
 
+    private final AuthService authService;
+
     @Autowired
-    private  AuthService authService;
-
-    @PostMapping("/api/auth/register")
-    public ResponseEntity<Austh> registerUser(@RequestBody AuthRequest request){
-        try{
-            authService.createNewUser(request);
-        }catch (Exception e){
-
-        }
+    public AuthController(AuthService authService) {
+        this.authService = authService;
     }
 
-    @PostMapping("/api/auth/login")
-    public ResponseEntity<Void> loginUser(){
-        return authService.signinUser();
-    }
-
-    @PostMapping("/api/auth/refresh-token")
-    public ResponseEntity<Void> refreshToken(){
-        return authService.updateToken();
+    @PostMapping("/register")
+    public ResponseEntity<AuthResponse> registerUser(@RequestBody AuthRequest request) {
+        AuthResponse authResponse = authService.createNewUser(request);
+        return ResponseEntity.ok(authResponse);
     }
 }
