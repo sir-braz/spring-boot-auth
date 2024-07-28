@@ -12,17 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-    private final AuthService authService;
-
     @Autowired
-    public AuthController(AuthService authService) {
-        this.authService = authService;
-    }
+    private  AuthService authService;
 
     @PostMapping("/api/auth/register")
-    public ResponseEntity<Void> registerUser(@RequestBody User user){
+    public ResponseEntity<Austh> registerUser(@RequestBody AuthRequest request){
         try{
-
+            authService.createNewUser(request);
         }catch (Exception e){
 
         }
