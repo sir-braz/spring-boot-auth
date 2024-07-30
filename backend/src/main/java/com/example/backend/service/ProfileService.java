@@ -1,4 +1,4 @@
 package com.example.backend.service;
 
-public interface JwtService {
+public class ProfileService {
 }

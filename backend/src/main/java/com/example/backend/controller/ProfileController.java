@@ -1,20 +1,18 @@
 package com.example.backend.controller;
 
 
-import com.example.backend.entity.Role;
-import com.example.backend.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class RoleController {
+public class ProfileController {
 
     private final RoleService roleService;
 
     @Autowired
-    public RoleController(RoleService roleService) {
+    public ProfileController(RoleService roleService) {
         this.roleService = roleService;
     }
 
