@@ -28,20 +28,8 @@ public class LoginController {
         User newUser = new User();
         newUser.setUsername(signUpRequest.getUsername());
         newUser.setPassword(signUpRequest.getPassword());
-        return null;
-    }
-
-    @PostMapping("/signin")
-    public ResponseEntity<String> login(@RequestBody User loginRequest){
-        User user = userService.findByUsername(loginRequest.getUsername());
-        String token = JwtUtil.generateToken(user);
-        return ResponseEntity.ok(token);
-    }
-
-    @PostMapping("/refresh")
-    public ResponseEntity<String> refresh(@RequestBody String refreshToken){
-        String newToken = JwtUtil.refreshJwt(refreshToken);
-        return ResponseEntity.ok(newToken);
+        loginService.registerUser(newUser);
+        return ResponseEntity.ok("User registered successfully");
     }
 
 }
