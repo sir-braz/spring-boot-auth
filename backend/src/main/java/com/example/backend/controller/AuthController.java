@@ -1,4 +1,4 @@
 package com.example.backend.controller;
 
-public class PasswordController {
+public class AuthController {
 }
