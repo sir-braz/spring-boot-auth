@@ -38,4 +38,11 @@ public class LoginController {
         String token = JwtUtil.generateToken(user);
         return ResponseEntity.ok(token);
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<String> refresh(@RequestBody String refreshToken){
+        String newToken = JwtUtil.refreshJwt(refreshToken);
+        return ResponseEntity.ok(newToken);
+    }
+
 }
