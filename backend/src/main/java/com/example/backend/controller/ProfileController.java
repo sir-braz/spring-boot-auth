@@ -1,69 +1,26 @@
 package com.example.backend.controller;
 
 
+import com.example.backend.entity.User;
+import com.example.backend.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/profile")
 public class ProfileController {
 
-    private final RoleService roleService;
+   private final ProfileService profileService;
 
-    @Autowired
-    public ProfileController(RoleService roleService) {
-        this.roleService = roleService;
+   @Autowired
+   public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+   }
+
+    @GetMapping("/list-user-profile")
+    public ResponseEntity<User> getUserProfule(){
+       User userProfile = profileService.getUserProfile();
+       return ResponseEntity.ok(userProfile);
     }
-
-
-    @PostMapping("/api/roles")
-    public ResponseEntity<Role> createRole(@RequestBody Role role) {
-        try{
-            Role createdRole = roleService.createNewRole(role);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    @GetMapping("/api/roles")
-    public ResponseEntity<Role> listAllRoles(){
-        try{
-            ResponseEntity<Role> listRole = roleService.listAllRoles();
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @GetMapping("/api/roles/{id}")
-    public ResponseEntity<Role> listRoleById(@PathVariable Long id){
-        try{
-            ResponseEntity<Role> listRoleId = roleService.listRoleById(id);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PutMapping("/api/roles/{id}")
-    public ResponseEntity<Role> updateRoleWithId(@RequestBody Role role, @PathVariable Long id){
-        try{
-            ResponseEntity<Role> updateRole = roleService.updateRoleById(role, id);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @DeleteMapping("/api/role/{id}")
-    public ResponseEntity<Role> deleteRoleById(@PathVariable Long id){
-        try{
-            ResponseEntity<Role> deleteRole = roleService.deleteRoleById(id);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
 }

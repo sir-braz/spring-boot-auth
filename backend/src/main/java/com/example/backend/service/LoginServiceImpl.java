@@ -1,4 +1,4 @@
 package com.example.backend.service;
 
-public interface LoginServiceImpl {
+public class LoginServiceImpl {
 }
