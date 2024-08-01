@@ -44,17 +44,4 @@ public class UserController {
         return ResponseEntity.ok("Update with Success: " + id);
     }
 
-    @DeleteMapping("/api/user/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable Long id){
-        boolean isDeleted = userService.deleteUser(id).hasBody();
-        try{
-            if(isDeleted){
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }else{
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }
