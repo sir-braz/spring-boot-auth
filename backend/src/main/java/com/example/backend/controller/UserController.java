@@ -34,30 +34,13 @@ public class UserController {
 
     @GetMapping("/api/user/{id}")
     public ResponseEntity<User> listUserById(@PathVariable Long id){
-       ResponseEntity<User> responseEntity = userService.getUserById(id);
-       try{
-           if(responseEntity.getStatusCode() == HttpStatus.OK && responseEntity.getBody() != null){
-               return new ResponseEntity<>(responseEntity.getBody(), HttpStatus.OK);
-           }else{
-               return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-           }
-       }catch (Exception e){
-           return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-       }
+       User user = userService.findById(id);
+       return ResponseEntity.ok(user);
     }
 
     @PutMapping("/api/user/{id}")
     public ResponseEntity<User> updateUserWithId(@PathVariable Long id, @RequestBody User user){
-        User updateUser = userService.updateUserId(id, user).getBody();
-        try{
-            if(updateUser != null){
-                return new ResponseEntity<>(updateUser, HttpStatus.OK);
-            }else{
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }catch (Exception e){
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+
     }
 
     @DeleteMapping("/api/user/{id}")
