@@ -26,13 +26,12 @@
 		<tag/>
 		<url/>
 	</scm>
-	<properties>
-		<java.version>17</java.version>
-		<!-- Configurações do SonarQube -->
-		<sonar.host.url>http://localhost:9000</sonar.host.url>
-		<sonar.login>squ_dab786b9bc7468edb43fcc0bced3e74450eacc24</sonar.login>
-	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.1.Final</version> <!-- Verifique a versão mais recente -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
