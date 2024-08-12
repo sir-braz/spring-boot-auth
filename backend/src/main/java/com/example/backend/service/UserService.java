@@ -1,16 +1,14 @@
 package com.example.backend.service;
 
-import com.example.backend.entity.User;
-import org.springframework.http.ResponseEntity;
+import com.example.backend.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-public interface UserService {
-    ResponseEntity<List<User>> getAllUsers();
-
-    ResponseEntity<User> getUserById(Long id);
-
-    ResponseEntity<User> updateUserId(Long id, User user);
-
-    ResponseEntity<User> deleteUser(Long id);
+@Service
+public class UserService {
+    private final UserRepository userRepository;
+    @Autowired
+    public UserService(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
 }
