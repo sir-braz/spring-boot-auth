@@ -18,4 +18,9 @@ public class UserController {
     public UserController(UserService userService){
         this.userService = userService;
     }
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        User createUser = userService.createUser(user);
+    }
 }
